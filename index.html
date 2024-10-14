@@ -1,112 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown to November 20th</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #282c34;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        h1 {
-            margin: 10px 0;
-            font-size: 2rem;
-        }
-        #countdown {
-            font-size: 2rem;
-            margin: 10px 0;
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        .image-container img {
-            max-width: 25%;
-            height: auto;
-            margin: 0 10px;
-        }
-        .gif-container {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        .gif-container img {
-            max-width: 25%;
-            height: auto;
-            margin: 0 5px;
-        }
-        /* Flying pigeon animation */
-        @keyframes flyPigeon {
-            0% { transform: translateX(-100vw); }
-            100% { transform: translateX(100vw); }
-        }
-        .pigeon {
-            position: absolute;
-            top: 20%;
-            width: 150px;
-            animation: flyPigeon 10s linear infinite;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown    to November 20th</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #282c34;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height:    100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;   
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 2rem;
+    }
+
+    #countdown {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .image-container img {
+      max-width: 25%;
+      height: auto;
+      margin: 0 10px;
+    }
+
+    .gif-container {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .gif-container img {
+      max-width: 25%;
+      height: auto;
+      margin: 0 5px;
+    }
+
+    /* Flying pigeon animation */
+    @keyframes flyPigeon {
+      0% { transform: translateX(-100vw); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .pigeon {
+      position: absolute;
+      top: 20%;
+      width: 150px;
+      animation: flyPigeon 20s linear infinite;
+    }
+
+    /* Center the content vertically */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Flying pigeon animation -->
+  <main>
     <img src="https://cdn.weasyl.com/~kahisys/submissions/1444967/3a96b63f04a28f1f6d95fe5bc4d3bea474f7b2d6b429d51bacaefc4c117d2d4a/kahisys-cool-pigeon-available-on-redbubble.png" alt="Flying Pigeon" class="pigeon">
 
-    <!-- Image and GIF next to each other above the title -->
-    <div class="image-container">
-        <img src="https://uploads.dailydot.com/2024/06/putting-on-clown-makeup.jpg?q=65&auto=format&w=800&ar=2:1&fit=crop" alt="Clown Makeup Image">
-        <img src="https://i.makeagif.com/media/2-19-2023/Ll5vpB.gif" alt="Funny GIF">
+<div class="image-container">
+      <img src="https://i.makeagif.com/media/2-19-2023/Ll5vpB.gif" alt="espace GIF">
     </div>
-
+	
     <h1>Countdown to November 20th!</h1>
     <div id="countdown"></div>
-    
-    <!-- Container for additional GIFs -->
+
     <div class="gif-container">
-        <img src="https://media1.tenor.com/m/xjz_SE0yqXQAAAAC/peace-disappear.gif" alt="Funny GIF">
-        <img src="https://media1.tenor.com/m/JBCYX4zLffgAAAAC/peace-disappear.gif" alt="Funny GIF">
-        <img src="https://media1.tenor.com/m/lmOJ3gBZxgMAAAAd/sayonara-pee-wee-herman.gif" alt="Sayonara Pee-Wee Herman GIF">
+      <img src="https://media1.tenor.com/m/xjz_SE0yqXQAAAAC/peace-disappear.gif" alt="Funny GIF">
+      <img src="https://media1.tenor.com/m/JBCYX4zLffgAAAAC/peace-disappear.gif" alt="Funny GIF">
+      <img src="https://media1.tenor.com/m/lmOJ3gBZxgMAAAAd/sayonara-pee-wee-herman.gif" alt="Sayonara Pee-Wee Herman GIF">
     </div>
+  </main>
 
-    <script>
-        // Set the target date
-        var targetDate = new Date("Nov 20, 2024 00:00:00").getTime();
+  <script>
+    // Set the target date
+    var targetDate = new Date("Nov 20, 2024 00:00:00").getTime();
 
-        // Update the countdown every second
-        var countdownFunction = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = targetDate - now;
+    // Update the countdown every second
+    var countdownFunction = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = targetDate - now;
 
-            // Time calculations
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Time calculations
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var    minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " 
-            + minutes + "m " + seconds + "s ";
+      // Display the result   
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-            // If the countdown is over, show fireworks
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "It's time!";
-            }
-        }, 1000);
-    </script>
+      // If the countdown    is over, show fireworks
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "It's time!";
+      }
+    }, 1000);
+  </script>
 
 </body>
 </html>
