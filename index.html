@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Countdown    to November 20th</title>
+  <title>Countdown to November 20th</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,10 +14,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height:    100vh;
+      height: 100vh;
       margin: 0;
       padding: 0;
-      overflow: hidden;   
+      overflow: hidden;
     }
 
     h1 {
@@ -25,7 +25,7 @@
       font-size: 2rem;
     }
 
-    #countdown {
+    #countdown, #working-days {
       font-size: 2rem;
       margin: 10px 0;
     }
@@ -67,12 +67,36 @@
       animation: flyPigeon 20s linear infinite;
     }
 
+    /* Hidden GIF */
+    #celebration-gif {
+      display: none; /* Initially hidden */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10; /* Ensure it's on top */
+    }
+
     /* Center the content vertically */
     main {
       display: flex;
       flex-direction: column;
       align-items: center;
       height: 100%;
+    }
+
+    /* Style the test button */
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -81,23 +105,44 @@
   <main>
     <img src="https://cdn.weasyl.com/~kahisys/submissions/1444967/3a96b63f04a28f1f6d95fe5bc4d3bea474f7b2d6b429d51bacaefc4c117d2d4a/kahisys-cool-pigeon-available-on-redbubble.png" alt="Flying Pigeon" class="pigeon">
 
-<div class="image-container">
+    <div class="image-container">
       <img src="https://i.makeagif.com/media/2-19-2023/Ll5vpB.gif" alt="espace GIF">
     </div>
 	
     <h1>Countdown to November 20th!</h1>
     <div id="countdown"></div>
+    <div id="working-days"></div>
 
     <div class="gif-container">
       <img src="https://media1.tenor.com/m/xjz_SE0yqXQAAAAC/peace-disappear.gif" alt="Funny GIF">
       <img src="https://media1.tenor.com/m/JBCYX4zLffgAAAAC/peace-disappear.gif" alt="Funny GIF">
       <img src="https://media1.tenor.com/m/lmOJ3gBZxgMAAAAd/sayonara-pee-wee-herman.gif" alt="Sayonara Pee-Wee Herman GIF">
     </div>
+
+    <!-- Celebration GIF -->
+    <img id="celebration-gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjZ6eDliZ3RwaHFsYmZ3a2NkdDhxMnlydWRuZXpyZTR1ZG54ZTc2YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Nvt8Y0E4IZdE4Ao3Q3/giphy.gif" alt="Celebration GIF">
+
+    <!-- Test Button -->
+    <button id="testButton">Test Firework!</button>
   </main>
 
   <script>
     // Set the target date
     var targetDate = new Date("Nov 20, 2024 00:00:00").getTime();
+
+    // Function to calculate working days
+    function getWorkingDays(startDate, endDate) {
+      var currentDate = new Date(startDate);
+      var workingDays = 0;
+      while (currentDate <= endDate) {
+        var dayOfWeek = currentDate.getDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Exclude Sundays (0) and Saturdays (6)
+          workingDays++;
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return workingDays;
+    }
 
     // Update the countdown every second
     var countdownFunction = setInterval(function() {
@@ -107,18 +152,28 @@
       // Time calculations
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var    minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Display the result   
       document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-      // If the countdown    is over, show fireworks
+      // Calculate working days
+      var workingDays = getWorkingDays(new Date(), new Date("Nov 20, 2024"));
+      document.getElementById("working-days").innerHTML = "Working days left: " + workingDays;
+
+      // If the countdown is over, show celebration GIF
       if (distance < 0) {
         clearInterval(countdownFunction);
         document.getElementById("countdown").innerHTML = "It's time!";
+        document.getElementById("celebration-gif").style.display = "block"; // Show the GIF
       }
     }, 1000);
+
+    // Function to trigger the display of the firework GIF manually
+    document.getElementById("testButton").addEventListener("click", function() {
+      document.getElementById("celebration-gif").style.display = "block"; // Show the GIF
+    });
   </script>
 
 </body>
